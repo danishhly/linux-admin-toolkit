@@ -1,0 +1,23 @@
+name: Test admin Scriptses
+
+on: [push]
+
+jobs:
+   check-scripts:
+     runs-on: ubuntu-latest
+
+     steps:
+     - name: Checkout code
+       uses: actions/checkout@v3
+
+     - name: Make executable
+       run:  chmod +x scripts/*.sh
+
+     - name: Check Syntax of Cleanup Script
+       run: bash -n scripts/cleanup.sh
+
+     - name: Check Syntax of Backup Script
+       run: bash -n scripts/backup.sh
+ 
+     - name: Notify
+       run: echo "All scripts passed sntax checks!"
